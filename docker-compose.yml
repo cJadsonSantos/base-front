@@ -1,51 +1,51 @@
 services:
   # Production service
-  nuxt-app:
+  #nuxt-app:
+  #  build:
+  #    context: .
+  #    dockerfile: Dockerfile
+  #  container_name: base-frontend
+  #  ports:
+  #    - "3000:3000"
+  #  environment:
+  #    - NODE_ENV=production
+  #    - NUXT_HOST=0.0.0.0
+  #    - NUXT_PORT=3000
+  #    - BASE_URL=http://localhost:8081
+  #  restart: unless-stopped
+  #  networks:
+  #    - base
+  #  healthcheck:
+  #    test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/" ]
+  #    interval: 30s
+  #    timeout: 10s
+  #    retries: 3
+  #    start_period: 40s
+
+  # Development service (uncomment for development)
+  nuxt-dev:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: base-frontend
+      dockerfile: dev.dockerfile
     ports:
       - "3000:3000"
+      - "24678:24678" # Nuxt DevTools
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
       - NUXT_HOST=0.0.0.0
       - NUXT_PORT=3000
       - BASE_URL=http://localhost:8081
-    restart: unless-stopped
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.nuxt
     networks:
       - base
-    healthcheck:
-      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/" ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
-  # Development service (uncomment for development)
-  # nuxt-dev:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.dev
-  #   ports:
-  #     - "3000:3000"
-  #     - "24678:24678" # Nuxt DevTools
-  #   environment:
-  #     - NODE_ENV=development
-  #     - NUXT_HOST=0.0.0.0
-  #     - NUXT_PORT=3000
-  #   volumes:
-  #     - .:/app
-  #     - /app/node_modules
-  #     - /app/.nuxt
-  #   networks:
-  #     - nuxt-network
-  #   command: npm run dev
+    command: npm run dev
 
 networks:
   base:
     external: true
 
-# Optional: Add volumes for persistent data
-# volumes:
-#   nuxt_data:
+volumes:
+  nuxt_data:
