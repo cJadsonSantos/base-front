@@ -58,7 +58,7 @@ Este projeto inclui uma configuração Docker otimizada seguindo as melhores pr�
 
 3. **Execute o ambiente de desenvolvimento:**
    ```bash
-   docker-compose up nuxt-dev
+   docker compose up nuxt-dev
    ```
 
 ## Comandos úteis
@@ -71,13 +71,13 @@ docker build -t nuxt-app .
 docker run -p 3000:3000 nuxt-app
 
 # Ver logs
-docker-compose logs -f nuxt-app
+docker compose logs -f nuxt-app
 
 # Parar serviços
-docker-compose down
+docker compose down
 
 # Rebuild e restart
-docker-compose up --build -d
+docker compose up --build -d
 
 # Limpar imagens não utilizadas
 docker system prune -a
