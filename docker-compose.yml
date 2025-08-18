@@ -11,7 +11,7 @@ services:
   #    - NODE_ENV=production
   #    - NUXT_HOST=0.0.0.0
   #    - NUXT_PORT=3000
-  #    - BASE_URL=http://localhost:8081
+  #    - BASE_URL=http://localhost:8081/api
   #  restart: unless-stopped
   #  networks:
   #    - base
@@ -34,7 +34,7 @@ services:
       - NODE_ENV=development
       - NUXT_HOST=0.0.0.0
       - NUXT_PORT=3000
-      - BASE_URL=http://localhost:8081
+      - BASE_URL=http://localhost:8081/api
     volumes:
       - .:/app
       - /app/node_modules
